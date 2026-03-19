@@ -7,6 +7,7 @@ import { connectDB } from "./config/db.js";
 import app from "./app.js";
 import { seedAdmin } from "./config/seedAdmin.js";
 import { Server } from "socket.io";
+import { startPriceUpdater } from "./services/assets.service.js";
 
 let io: Server;
 export { io };
@@ -37,6 +38,8 @@ const startServer = async () => {
                 console.log(`Client disconnected: ${socket.id}`);
             });
         });
+
+        startPriceUpdater(3000);
 
         server.listen(PORT, () => {
             console.log(`Server running on http://localhost:${PORT}`);
