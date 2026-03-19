@@ -3,10 +3,13 @@ dotenv.config();
 
 import { connectDB } from "./config/db.js";
 import app from "./app.js";
+import { seedAdmin } from "./config/seedAdmin.js";
 
 const startServer = async () => {
     try {
         await connectDB();
+
+        seedAdmin();
 
         const PORT = process.env.PORT || 8081;
 
