@@ -6,8 +6,8 @@ export enum AssetTypes {
 export interface IAssets {
     name: string;
     symbol: string;
-    types: AssetTypes;
+    type: AssetTypes;
     price: number;
     change: number;
-    createdAt: Date;
+    createdAt?: Date;
 }
