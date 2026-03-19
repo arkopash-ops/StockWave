@@ -1,4 +1,4 @@
-import { compare, hash } from "bcryptjs";
+import bcrypt, { hash } from "bcryptjs";
 import UserModel from "../model/users.model.js";
 import { generateToken } from "../config/jwt.js";
 
@@ -15,15 +15,15 @@ interface LoginInput {
 
 
 export const login = async ({ email, password }: LoginInput) => {
-    const user = await UserModel.findOne({ email });
-    if (!user) {
+    const user = await UserModel.findOne({ email }).select("+password");
+    if (!user || !user.password) {
         throw {
             status: 401,
             message: "Invalid credentials"
         };
     }
 
-    const isMatch = await compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
         throw {
             status: 401,
