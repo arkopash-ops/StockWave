@@ -2,11 +2,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import http from "http"
+import { Server } from "socket.io";
 
 import { connectDB } from "./config/db.js";
 import app from "./app.js";
 import { seedAdmin } from "./config/seedAdmin.js";
-import { Server } from "socket.io";
 import { startPriceUpdater } from "./services/assets.service.js";
 
 let io: Server;

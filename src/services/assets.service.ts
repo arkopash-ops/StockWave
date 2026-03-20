@@ -14,7 +14,8 @@ export const registerAssets = async (data: IAssets) => {
 
 
 export const allAssets = async () => {
-    return await AssetModel.find();
+    const assets = await AssetModel.find();
+    return assets.map(formatAsset);
 }
 
 

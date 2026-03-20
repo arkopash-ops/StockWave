@@ -6,7 +6,7 @@ export const getRandomPriceChange = (asset: AssetDocument): number => {
     if (asset.type === AssetTypes.CRYPTO) {
         return +(Math.random() * 10 - 5).toFixed(2);
     } else {
-        return +(Math.random() * 2 - 2).toFixed(2);
+        return +(Math.random() * 4 - 2).toFixed(2);
     }
 };
 
